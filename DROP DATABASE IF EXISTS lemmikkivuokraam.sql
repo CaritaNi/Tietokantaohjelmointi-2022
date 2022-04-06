@@ -39,7 +39,7 @@ FOREIGN KEY (asiakasnro) REFERENCES ASIAKAS(asiakasnro)
 
 CREATE TABLE KAMPPANJA (
     vuokrausnro UNIQUE INT NOT NULL PRIMARY KEY,
-    elainID SMALLINT,
+    elainID INT,
     info TEXT NOT NULL,
     apvm DATE,
     lpvm DATE,
@@ -59,7 +59,7 @@ CREATE Table palaute (
 CREATE Table oheistuotteet (
     tuote TEXT NOT NULL,
     maara INT NOT NULL,
-    elainID TEXT NOT NULL,
+    elainID INT NOT NULL,
     info TEXT,
     FOREIGN KEY (elainID) REFERENCES ELAIN(elainID)
 );
