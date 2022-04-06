@@ -12,7 +12,8 @@ CREATE table ASIAKAS (
     puhnro INT(15) NOT NULL,
     osoite VARCHAR(100) NOT NULL,
     postinro INT(5) NOT NULL,
-    postitmp VARCHAR(100) NOT NULL
+    postitmp VARCHAR(100) NOT NULL,
+    UNIQUE(asiakasnro)
 );
 
 CREATE TABLE LAJI (
@@ -21,24 +22,26 @@ CREATE TABLE LAJI (
 );
 
 CREATE TABLE ELAIN (
-    elainID UNIQUE INT PRIMARY KEY AUTO_INCREMENT,
+    elainID INT PRIMARY KEY AUTO_INCREMENT,
     lajinro VARCHAR(255) NOT NULL,
     hinta INT NOT NULL,
     tietoa TEXT NOT NULL,
-    rotu TEXT NOT NULL
+    rotu TEXT NOT NULL,
+    UNIQUE(elainID)
 );
 
 CREATE table VUOKRA (
-    vuokrausnro UNIQUE INT PRIMARY KEY AUTO_INCREMENT,
+    vuokrausnro INT PRIMARY KEY AUTO_INCREMENT,
     asiakasnro INT NOT NULL,
     apvm DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     lpvm DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     tila CHAR(1),
+    UNIQUE(vuokrausnro),
 FOREIGN KEY (asiakasnro) REFERENCES ASIAKAS(asiakasnro)
 );
 
 CREATE TABLE KAMPPANJA (
-    vuokrausnro UNIQUE INT NOT NULL PRIMARY KEY,
+    vuokrausnro INT NOT NULL PRIMARY KEY,
     elainID INT,
     info TEXT NOT NULL,
     apvm DATE,
