@@ -23,11 +23,12 @@ CREATE TABLE LAJI (
 
 CREATE TABLE ELAIN (
     elainID INT PRIMARY KEY AUTO_INCREMENT,
-    lajinro VARCHAR(255) NOT NULL,
+    lajinro VARCHAR(255) NOT NULL AUTO_INCREMENT,
     hinta INT NOT NULL,
     tietoa TEXT NOT NULL,
     rotu TEXT NOT NULL,
     UNIQUE(elainID)
+FOREIGN KEY (lajinro) REFERENCES LAJI(lajinro)
 );
 
 CREATE table VUOKRA (
@@ -61,8 +62,29 @@ CREATE Table palaute (
 
 CREATE Table oheistuotteet (
     tuote TEXT NOT NULL,
+    hinta INT NOT NULL,
     maara INT NOT NULL,
     elainID INT NOT NULL,
     info TEXT,
     FOREIGN KEY (elainID) REFERENCES ELAIN(elainID)
 );
+
+INSERT INTO LAJI(lajinimi, lajinro)
+    VALUES
+    ("Koirat", "1"),
+    ("Kissat", "2"),
+    ("Kilpikonnat", "3"),
+    ("Linnut", "4"),
+    ("Lampaat & vuohet", "5"),
+    ("Hevoset ja ponit", "6")
+;
+INSERT INTO ELAIN(rotu, hinta, tietoa)
+    VALUES
+    ("Kilpikonna", "40€/pvä", "Nimi:  MUIKEA-MARKO"),
+    ("Kilpikonna", "40€/pvä", "Nimi:  KOVA-KALLE")
+
+INSERT INTO oheistuotteet(tuote, hinta, maara, info)
+    VALUES
+    ("Porkkanasäkki", "10€", "5kg", "")
+
+  
